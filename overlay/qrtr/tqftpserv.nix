@@ -1,7 +1,7 @@
 { stdenv
 , lib
 , fetchFromGitHub
-, substituteAll
+, replaceVars
 , qrtr
 , zstd
 , meson
@@ -25,8 +25,7 @@ stdenv.mkDerivation (finalAttrs: {
   };
 
   patches = [
-    (substituteAll {
-      src = ./tqftpserv-firmware-path.diff ;
+    (replaceVars ./tqftpserv-firmware-path.diff {
       firmware_base = firmwareBase;
     })
   ];
